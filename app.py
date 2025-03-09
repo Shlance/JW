@@ -2,11 +2,13 @@ import pymongo
 from flask import Flask, render_template, request, redirect, flash
 from bson.objectid import ObjectId
 from random import sample, shuffle
-
+from dotenv import load_dotenv
+import os
 app = Flask('jumbledwords')
 app.config['SECRET_KEY'] = 'safe^&*hdgahksdg'
-
-client = pymongo.MongoClient('mongodb+srv://YW:youngwonks@cluster0.odbmgfe.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+load_dotenv()
+MONGO_URI= os.getenv('MONGO_URI')
+client = pymongo.MongoClient(MONGO_URI)
 db = client.jumbledwords
 
 
